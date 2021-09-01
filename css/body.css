@@ -1,0 +1,27 @@
+﻿body {
+    height:100vh;
+    background-color: blueviolet;
+    margin: 0;
+    padding: 0;
+    font-family: Consolas;
+
+    
+    justify-content:center;
+    align-items:center;
+}
+.buttoncontaner {
+    background-color: aliceblue;
+    width: 40%;
+    height: 20%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size:120%;
+}
+    .buttoncontaner:hover {
+        font-size: 100%;
+        background-color: aquamarine;
+        width: 36%;
+        height: 16%;
+    }

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Генератор постиронии</title>
+    <link rel="stylesheet" href="body.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+
+</head>
+<body>
+    <div style="display:flex; justify-content:center;align-items:center; height:auto; transform: scale(0.7); margin: -3%;">
+        <div style="width:auto;">
+            <img src="" class="mem" style="position:relative; height:100vh; z-index:-1">
+            <div id="textmem" style="display:flex; justify-content:center;align-content:center; background-color:rgba(0, 0, 0, 0.86);color:aliceblue; position:relative; top:-100px; font-size:500%">
+                
+            </div>
+        </div>
+    </div>
+    
+    <div style="        display: flex;
+        height: 100vh;
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+">
+        <div id="button_start" class="buttoncontaner" >
+            <div style="position:relative;">Сгенерировать</div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+        var listwords = ["банан","огурец","томат","морковь","авакадо","БАКЛАЖАН","картофель","арбуз","дыня","свекла","щавель"]
+        
+        var te = document.getElementById("textmem");
+        var b = document.getElementById("button_start")
+        
+        var genmem = function () {
+            
+            var keyword = listwords[Math.floor(Math.random()*listwords.length)]
+
+            $(document).ready(function () {
+
+                $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+                    {
+                        tags: keyword,
+                        tagmode: "any",
+                        format: "json"
+                    },
+                    function (data) {
+                        var rnd = Math.floor(Math.random() * data.items.length);
+
+                        var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
+
+                        //$('.mem').css('background-image', "url('" + image_src + "')");
+                        
+                        $(".mem").attr("src",image_src);
+                        te.innerHTML = listwords[Math.floor(Math.random() * listwords.length)]
+                    });
+
+            });
+            
+        }
+        b.onclick = genmem
+    </script>
+
+
+
+</body>
+</html>
